@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<form class="form-signin" action="/login" method="POST">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+
+  <div class="row justify-content-center">
+    <label for="email" class="sr-only">Username</label>
+    <input class="form-control col-3" name="username" id="email" type="text" placeholder="Username" required autofocus>
+  </div>
+
+<div class="row justify-content-center mb-3">
+    <label for="password" class="sr-only">Password</label>
+    <input class="form-control col-3" name="password" id="password" type="password" placeholder="Password" required>
+</div>
+
+
+  <div class="row justify-content-center">
+    <button class="btn btn-lg btn-primary btn-block col-3" type="submit">Sign in</button>
+  </div>
+</form>
+{% endblock %}

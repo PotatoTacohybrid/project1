@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+  <form class="form-group" action="{{ url_for('search') }}" method="post">
+    <div class="row justify-content-center">
+      <input class="form-control col-3" name="title" type="text" placeholder="Title">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+{% endblock %}

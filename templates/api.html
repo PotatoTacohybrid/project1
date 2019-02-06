@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block main %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">"{{ title }}" by {{ author }}</h1>
+      <h6>ISBN: {{ book['books'][0]['isbn'] }}</h6>
+      <h4>This book as an average rating of {{ book['books'][0]['average_rating'] }} with {{ book['books'][0]['work_reviews_count'] }} reviews.</h4>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      {% for review in reviews %}
+      <div class="col-md-4">
+        <h2>{{ review.rating }}/5 "{{ review.title }}"</h2>
+        <h2>-{{ review.username }}</h2>
+        <p>{{ review.review }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container">
+    {% if not alreadyposted and session.user_id %}
+      <div class="postReview">
+        <h1>POST REVIEW<h1>
+        <form action="/review" method="POST">
+          <div class="form-group">
+            <label for="reviewRating">Rating</label>
+            <select name="rating" class="form-control" id="reviewRating" required>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="reviewTitle">Title</label>
+            <input name="title" type="text" class="form-control" id="reviewTitle" required>
+          </div>
+          <div class="form-group">
+            <label for="reviewReview">Review</label>
+            <textarea name="review" class="form-control" id="reviewReview" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          <input name="isbn" type="hidden" value="{{ isbn }}"/>
+        </form>
+      </div>
+    {% endif %}
+  </div>
+
+{% endblock %}
